@@ -38,4 +38,4 @@ To run the frontend:
 2. Navigate to the frontend folder.
 3. Start a local web server:
 	python -m http.server 5500
-4. Open a web browser and navigate to - http://localhost:5500.
+4. Open a web browser and navigate to - http://localhost:5500
