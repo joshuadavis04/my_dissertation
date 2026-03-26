@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help and Support | Diabetic Eye Screening</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="light-mode help-page-body">
+    
+    <div class="help-container">
+        <header class="help-header">
+            <a href="index.html" class="back-button">← Back to Chat</a>
+            
+            <div style="display: flex; gap: 10px;">
+                <button class="theme-toggle" onclick="toggleAccessibleText()">Aa Text Size</button>
+                <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+            </div>
+        </header>
+
+        <main class="help-content">
+            <h1>Help and Support</h1>
+            
+            <div class="emergency-box">
+                <strong>⚠️ Medical Emergency:</strong> If you are experiencing a life-threatening medical emergency, do not use the chatbot. Please seek immediate medical attention by contacting 111 or 999 depending on severity. This chatbot is equipped with a safety filter to catch emergency keywords, but it is not a diagnostic tool.
+            </div>
+
+            <h2>The background regarding the assistant</h2>
+            <p>Receiving medical correspondence can be confusing and stressful especially when it contains complex clinical grades like R0, R1 and M1.</p>
+            <p>This tool is a PROOF OF CONCEPT conversational AI Chatbot to help support patients who receive diabetic eye screening results from NHS Wales. The main goal of the chatbot is to help translate complex clinical grades into an empathetic language suitable for patients to understand.</p>
+
+            <h2>Disclaimers</h2>
+            <ul>
+                <li><strong>Not Medical Advice:</strong> This solution is not a replacement for seeing your GP or optician.</li>
+                <li><strong>Limitations of the AI:</strong> This chatbot uses a local large language model to generate conversational responses. While it uses hard-coded safety responses, AI can sometimes make mistakes. Always clarify your results with a qualified optician or doctor.</li>
+                <li><strong>Research Project:</strong> This is a research project in conjunction with the Centre for Vision Services Research.</li>
+            </ul>
+
+            <h2>Data Security</h2>
+            <p>We are aware that your medical data is highly sensitive. Below are the steps that we took to keep your data secure:</p>
+            <ul>
+                <li><strong>Local Processing:</strong> The chatbot uses a local large language model which means that no patient data leaves the local environment.</li>
+                <li><strong>No storage:</strong> No real patient data is processed at any stage or saved to external sources. Your chat history is only saved locally on your own internet browser.</li>
+            </ul>
+
+            <h2>For official guidance please visit:</h2>
+            <div class="nhs-info">
+                <ul>
+                    <li><a href="https://www.diabetes.org.uk/about-diabetes/looking-after-diabetes/diabetic-eye-screening" target="_blank">Diabetic Eye Screening | Diabetes UK</a></li>
+                    <li><a href="https://phw.nhs.wales/services-and-teams/screening/diabetic-eye-screening-wales/about-diabetic-eye-screening/" target="_blank">About Diabetic Eye Screening | Public Health Wales</a></li>
+                    <li><a href="https://www.nhs.uk/conditions/diabetic-retinopathy/" target="_blank">Diabetic Retinopathy | NHS UK</a></li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,510 @@
+/*
+    J L Davis 25/03/2026
+    The stylesheet for the project.
+
+    Contents:
+    1. Variables
+    2. Base layout & fonts
+    3. Sidebar layout & relevant controls
+    4. Main chat page styling
+    5. Help page specfic styles
+    6. Components shared between the pages
+    7. Accessibility & Themes
+*/
+
+/* 1. Variables */
+
+/* Default light mode colours */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --sidebar-bg: #e9ecef;
+    --card-bg: #ffffff;
+    --border-color: #ddd;
+    --accent-color: #b30e2e;
+    --accent-text: #ffffff;
+    --system-guidance-bubble-bg: #ffffff;
+    --patient-query-bubble-bg: #b30e2e;
+}
+
+/* Dark mode colours */
+body.dark-mode {
+    --bg-color: #1e1e1e;
+    --text-color: #f1f1f1;
+    --sidebar-bg: #121212;
+    --card-bg: #2d2d2d;
+    --border-color: #444;
+    --system-guidance-bubble-bg: #2d2d2d;
+    --patient-query-bubble-bg: #b30e2e;
+}
+
+/* 2. Base layout & fonts */
+
+/* Below is the main body and the smooth transitions between sidebar and main */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* This is the master wrapper that holds the sidebar and the main area side by side */
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* 3. Sidebar layout & relevant controls */
+
+/* This is the main sidebar container */
+.sidebar {
+    width: 300px;
+    /* The flex-shrink stops the main area from squishing the sidebar */
+    flex-shrink: 0;
+    /* When the sidebar is collapsed it keeps thinks tidy and nice */
+    overflow: hidden; 
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s, transform 0.3s;
+}
+
+/* This triggers when the user hides the sidebar via the sandwich button */
+.sidebar.collapsed {
+    width: 0;
+    transform: translateX(-100%);
+    border: none;
+}
+
+/* The header for the sidebar top section */
+.sidebar-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header h2 { margin: 0; font-size: 1.2rem; }
+
+/* The sandwich menu button */
+.collapse-button, .open-sidebar-button {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* The new chat button in the sidebar */
+.sidebar-new-chat button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--accent-color);
+    color: var(--accent-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: opacity 0.2s;
+    white-space: nowrap; 
+}
+.sidebar-new-chat button:hover {
+    opacity: 0.9;
+}
+
+/*This is the saved chat history area */
+.chat-history {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+.history-item {
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.history-item:hover {
+    border-color: var(--accent-color);
+}
+.session-summary-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* This pushes the rubbish button to the right */
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+/* The individual rubbish icon */
+.delete_chat_button {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+    transition: color 0.2s;
+}
+.delete_chat_button:hover {
+    color: var(--accent-color);
+}
+
+/* Clear all chats button in the sidebar */
+.clear-chats-button {
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.clear-chats-button:hover {
+    background: var(--accent-color);
+    color: var(--accent-text);
+    border-color: var(--accent-color);
+}
+
+/* The bottom of the sidebar section */
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+.help-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* 4. Main chat page styling */
+
+/*This is where the chat happens */
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/*Top Navigation Bar */
+.top-bar {
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Buttons in the top navigation bar */
+.theme-toggle {
+    margin-left: auto;
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/*Initial welcome screen which is displayed to the user */
+.welcome-screen {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/*Inner wrapper for the welcome screen content */
+.welcome-content {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+/*Main title on the welcome screen */
+.welcome-content h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/*The container for the active chat messages once a chat has started */
+.active-guidance-area {
+    display: flex;
+    flex-direction: column;
+    /*This ensures the area takes up the remaining height of the main chat area */
+    height: calc(100vh - 120px); 
+    /*Prevents the whole page from scrolling */
+    overflow: hidden; 
+}
+
+/*The actual list of messages inside the active chat area */
+.chat-messages {
+    /*Tells the chat history to take up all available vertical space */
+    flex-grow: 1; 
+    /*Adds the vertical scrollbar when messages fill the space */
+    overflow-y: auto; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    /*Adds space between messages */
+    gap: 15px; 
+    scrollbar-width: thin;
+}
+
+/*Styling for a single message bubble */
+.message {
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    border-radius: 18px;
+    max-width: 80%;
+    line-height: 1.5;
+}
+
+/*Specific styling for messages sent by the user */
+.patient-query-bubble {
+    background-color: var(--patient-query-bubble-bg);
+    color: var(--accent-text);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+/*Specific styling for messages sent by the chatbot */
+.system-guidance-bubble {
+    background-color: var(--system-guidance-bubble-bg);
+    border: 1px solid var(--border-color);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+/*Wrapper for the text input area at the bottom of the chat */
+.query-input-wrapper {
+    flex-shrink: 0; 
+    padding: 20px;
+    background-color: var(--bg-color); 
+    border-top: 1px solid var(--border-color); 
+}
+
+/*The input box container for both the welcome screen and the active chat */
+.main-input-box, .chat-input-area {
+    display: flex;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    padding: 5px 5px 5px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/*The actual text input field inside the container in the main chat area*/
+.main-input-box input, .chat-input-area input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+}
+
+/*The send buttons inside the input areas */
+.main-input-box button, .chat-input-area button {
+    background: var(--accent-color);
+    color: var(--accent-text);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    /*Allowing for Smooth transitions for hover and click */
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+/*Hover effect for the send buttons */
+.main-input-box button:hover, .chat-input-area button:hover {
+    opacity: 0.85;
+}
+
+/*Animationn for the send buttons */
+.main-input-box button:active, .chat-input-area button:active {
+    transform: scale(0.96);
+}
+
+/* 5. Help page specfic styles */
+
+/*Overrides the locked body for the help page to ensure that it can scroll correctly */
+.help-page-body {
+    display: block; 
+    overflow-y: auto; 
+    height: auto;
+}
+
+/*The main container for the help and support page */
+.help-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+/*Added a header on the help page */
+.help-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+/*The button used to go back to the main chat */
+.back-button {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: background 0.2s;
+}
+
+/*Added a hover effect for the back button */
+.back-button:hover {
+    background: var(--sidebar-bg);
+}
+
+/*Main title on the help page */
+.help-content h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+/*Subheadings within the help content on the help and support page */
+.help-content h2 {
+    font-size: 1.4rem;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--sidebar-bg);
+    padding-bottom: 5px;
+}
+
+/*Paragraphs and list items in the help content */
+.help-content p, .help-content li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+/* 6. Components shared between the pages */
+
+/*This container is used to display the relevant NHS links */
+.nhs-info {
+    margin-top: 40px;
+    text-align: left;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+/*The styling used for the links in the NHS links container */
+.nhs-info a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/*The styling used for emergency warnings */
+.emergency-box {
+    background-color: #fff3cd; 
+    color: #856404;
+    border-left: 6px solid #d9534f;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 25px 0;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/*The small disclaimer text at the bottom of the screen */
+.ai-disclaimer {
+    text-align: center;
+    font-size: 0.85rem; 
+    padding: 10px;
+    color: #555; 
+}
+
+/* 7. Accessibility & Themes */
+
+/*This adds an underline to links in dark mode so people with colour blindness can easily spot them without relying just on the colour change*/
+body.dark-mode .nhs-info a,
+body.dark-mode .help-link {
+    color: #FFFFFF;
+    text-decoration: underline; 
+}
+
+/*This makes sure the back button has a really clear white outline so it stands out nicely against the dark background*/
+body.dark-mode .back-button {
+    color: #FFFFFF;
+    border-color: #FFFFFF; 
+    text-decoration: none;
+}
+
+/*This just dims the links a tiny bit when you hover over them in dark mode so you know you are interacting with them*/
+body.dark-mode .nhs-info a:hover,
+body.dark-mode .help-link:hover,
+body.dark-mode .back-button:hover {
+    color: #cccccc; 
+}
+
+/*This changes the emergency warning box to fit the dark theme better but keeps the text bright white and the red border sharp so you cant miss it*/
+body.dark-mode .emergency-box {
+    background-color: #2d2d2d; 
+    color: #FFFFFF; 
+    border-left: 6px solid #FF3333; 
+}
+
+/*This brightens up the little AI disclaimer at the bottom so it can actually be read when dark mode is turned on*/
+body.dark-mode .ai-disclaimer {
+    color: #cccccc; 
+}
+
+/*This bumps up the main font size across the whole page when the user clicks the large text button*/
+body.accessible-text-mode {
+    font-size: 1.2rem;
+}
+
+/*This makes sure all the important bits of text like the chat bubbles and the help paragraphs get bigger when the large text mode is active*/
+body.accessible-text-mode .message,
+body.accessible-text-mode .main-input-box input,
+body.accessible-text-mode .chat-input-area input,
+body.accessible-text-mode .history-item,
+body.accessible-text-mode .help-content p,
+body.accessible-text-mode .help-content li,
+body.accessible-text-mode .emergency-box {
+    font-size: 1.25rem; 
+}
+
+/*This just makes the big welcome title even larger so it scales nicely with the rest of the blown up text*/
+body.accessible-text-mode .welcome-content h1 {
+    font-size: 2.4rem;
+}

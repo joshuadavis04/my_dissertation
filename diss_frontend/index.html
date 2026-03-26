@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetic Eye Screening Support</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="light-mode">
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2>Chats</h2>
+                <button class="collapse-button" onclick="toggleSidebar()">☰</button>
+            </div>
+            
+            <div class="sidebar-new-chat">
+                <button onclick="startNewChat()">+ New Chat</button>
+            </div>
+            <div class="chat-history" id="chat_history_list">
+                </div>
+
+            <div class="sidebar-footer">
+                <button class="clear-chats-button" onclick="clearAllSessionRecords()">🗑️ Clear All Chats</button>
+                <a href="help.html" class="help-link">Help & Support</a>
+            </div>
+        </aside>
+
+        <main class="main-area">
+            <header class="top-bar">
+                <button class="open-sidebar-button" id="open_side_bar_button" onclick="toggleSidebar()" style="display: none;">☰</button>
+    
+                <div style="margin-left: auto; display: flex; gap: 10px;">
+                    <button class="theme-toggle" onclick="toggleAccessibleText()">Aa Text Size</button>
+                    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+                </div>
+            </header>
+
+            <div id="welcomeScreen" class="welcome-screen">
+                <div class="welcome-content">
+                    <h1>Got any questions regarding your screening?</h1>
+                    
+                    <div class="main-input-box">
+                        <input type="text" id="initialInput" placeholder="Type your result or question here..." onkeypress="handleInitialKeyPress(event)">
+                        <button onclick="startChat()">Ask</button>
+                    </div>
+
+                    <div class="nhs-info">
+                        <p>For more information find the relevant NHS links below:</p>
+                        <ul>
+                            <li><a href="https://www.diabetes.org.uk/about-diabetes/looking-after-diabetes/diabetic-eye-screening" target="_blank">Diabetic Eye Screening | Diabetes UK</a></li>
+                            <li><a href="https://phw.nhs.wales/services-and-teams/screening/diabetic-eye-screening-wales/about-diabetic-eye-screening/" target="_blank">About Diabetic Eye Screening | Public Health Wales</a></li>
+                            <li><a href="https://www.nhs.uk/conditions/diabetic-retinopathy/" target="_blank">Diabetic Retinopathy | NHS UK</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="activeChatArea" class="active-guidance-area" style="display: none;">
+                <div class="chat-messages" id="guidance-chat-window">
+                    </div>
+                
+                <div class="query-input-wrapper">
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Ask a follow-up question..." onkeypress="handleChatKeyPress(event)">
+                        <button onclick="submitFollowUpQuery()">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="ai-disclaimer">
+                This chatbot is AI and can make mistakes. Please do not enter personal identifiable information (such as your name or NHS number).
+            </footer>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
