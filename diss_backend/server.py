@@ -47,7 +47,7 @@ Deterministic_Rules = [
     {
         "id": "vague_no_changes",
         "pattern": r'\b(no changes due to diabetes were seen)\b',
-        "reply" : "This is excellent news! Your letters states that no changes were seen. If you look at bottom right hand corner of your letter, you might see codes like 'R0' or 'M1' in a table. If you'd like me to explain them, just type them in. Otherwise keep up the good work and you will be recalled in 1 to 2 years."
+        "reply" : "This is excellent news! Your letters states that no changes were seen. If you look at bottom right hand corner of your letter, you might see codes like 'R0' or 'M1' in a table. If you'd like me to explain them, just type them in. Otherwise keep up the good work!"
     },
     {
         "id": "vague_further_exam",
