@@ -52,12 +52,12 @@ Deterministic_Rules = [
     {
         "id": "vague_further_exam",
         "pattern": r'\b(changes.*require further examination.*hospital eye specialist)\b',
-        "reply": "Your letter mentions changes that require a further examination by a specialist. I know this can sound worrying, but checking the bottom right hand corner of your letter for a table of codes (like R2, R3, or M1) can help me explain what this means. Do you see any codes there?"
+        "reply": "Your letter mentions changes that require further examination by a hospital eye specialist. I know this can sound worrying, but they have the right tools to help you. Importantly, if you have not received confirmation from the Eye Clinic within 4 weeks of the date on your letter, please contact the Outpatient Coordinator. Finally, do you see a table of codes (like R2, R3, or M1) in the bottom right corner of your letter? If so, type them here and I can explain what they mean for you."
     },
     {
         "id": "vague_ungradable",
-        "pattern": r'\b(photographs.*did not allow us to see.*retina)\b',
-        "reply": "Your letter states the clinic couldn't get a clear photograph of the back of your eye, this can happen for many harmless reasons, like having small pupils or cataracts. The clinic will contact you for a recall appointment or refer you to a specialist who has different equipment to see your eye clearly."
+        "pattern": r'\b(photographs.*did not allow us to see.*retina|unable to photograph|couldn\'t photograph|unclear picture)\b',
+        "reply": "Your letter states that the clinic could not get a clear photograph of the back of your eye. This can happen for many harmless reasons, like having small pupils. The clinic will be contacting you for a recall appointment within 3 months to try again. If that timing is not convenient, please contact them using the telephone number on your letter."
     },
     {
         "id": "emergency_vision_loss",
@@ -146,8 +146,8 @@ Deterministic_Rules = [
     },
     {
         "id": "condition_cataract_ungradable",
-        "pattern": r'\b(cataract|cataracts|unable to photograph|couldn\'t photograph|unclear picture)\b',
-        "reply": "A cataract is a cloudiness in the lens of your eye. This is very common, but it means the screening camera was unable to get a clear photograph of the back of your eye today. Because we couldn't get a clear view, you have been referred to an eye specialist who has the right equipment to examine your eyes fully."
+        "pattern": r'\b(cataract|cataracts)\b',
+        "reply": "A cataract is a cloudiness in the lens of your eye. This is very common, but it means the screening camera was unable to get a clear photograph today. Because we could not get a clear view, you have been referred to an eye specialist who has the right equipment to examine your eyes fully. Please note that if you have not received confirmation from the Eye Clinic about your appointment within 4 weeks, contact the Outpatient Coordinator."
     }
 ]
 
