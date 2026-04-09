@@ -251,7 +251,9 @@ function displayChatBubble(text, message_source) {
 
     //After creating the message bubble apply the css to this box instead of the main chat area.
     message_bubble.className = `message ${message_source === 'bot' ? 'system-guidance-bubble' : 'patient-query-bubble'}`;
-    message_bubble.innerHTML = text;
+    
+    //Uses a third party marked.js library to translate the LLMs markdown syntax into HTML bullet points and a clearer bold text.
+    message_bubble.innerHTML = marked.parse(text);
 
     //To put the message bubble on the screen.
     chat_body.appendChild(message_bubble);
