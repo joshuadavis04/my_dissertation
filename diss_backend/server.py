@@ -208,7 +208,7 @@ def chat():
 
         start_time = time.time()
 
-        response = ollama.chat(model='nhs-eye-bot-v2', messages=temp_history)
+        response = ollama.chat(model='nhs-eye-bot-v3', messages=temp_history)
         
         end_time = time.time()
         latency = round(end_time - start_time, 2)
