@@ -16,7 +16,7 @@ To setup the custom Ollama model:
 1. Open your terminal.
 2. Navigate to the 'backend' folder for the project.
 3. Build the custom model using the provided Modelfile by running the following command:
-	ollama create nhs-eye-bot-v2 -f Modelfile
+	ollama create nhs-eye-bot-v3 -f Modelfile
 Note: If you encounter memory problems, please ensure that you have at least 3GB of free RAM
 or close down unused background applications.
 
